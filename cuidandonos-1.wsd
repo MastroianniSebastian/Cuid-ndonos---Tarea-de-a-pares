@@ -13,68 +13,58 @@ class Persona {
 }
 
 interface EstrategiaInconveniente {
-    + accionarFrenteAInconveniente();
+    + accionarFrenteAInconveniente() 
 }
 
 class EnviarMensajeCuidadores implements EstrategiaInconveniente {
-    +accionarAnteInconveniente();
+    +accionarAnteInconveniente() 
 }
 
 class RealizarLLamadaPolicia implements EstrategiaInconveniente {
-    +accionarAnteInconveniente();
+    +accionarAnteInconveniente() 
 }
 
 class RealizarLLamadaContacto implements EstrategiaInconveniente {
-    +accionarAnteInconveniente();
+    +accionarAnteInconveniente() 
 }
 
 class EsperarXFalsaAlarma implements EstrategiaInconveniente {
-    +accionarAnteInconveniente();
+    +accionarAnteInconveniente() 
 }
 
 
 interface EstadoRecorrido{
-    +notificarCuidadores(); 
-    +notificarTranseunte();
-    +actualizarEstado();
-    +finalizar();
+    +notificarCuidadores()  
+    +notificarTranseunte() 
+    +actualizarEstado() 
+    +actualizarTiempoOrigenDestino()
+    +finalizar() 
 }
 
 class EnEspera implements EstadoRecorrido{
-    +iniciarRecorrido();
-    +calcularTiempoDemora()
+    +iniciarRecorrido() 
+    +calcularTiempoOrigenDestino()
 }
 
-class Iniciado implements EstadoRecorrido{
-    
+class Iniciado implements EstadoRecorrido{}
 
-}
-
-class Finalizado implements EstadoRecorrido{
-
-}
+class Finalizado implements EstadoRecorrido{}
 
 class Inconveniente implements EstadoRecorrido{
     -estrategiaAnteInconveniente: EstrategiaInconveniente
-    +accionarAnteInconveniente(Recorrido recorrido);
-    +cambiarConfiguracionAnteInconveniente();
+    +accionarAnteInconveniente(Recorrido recorrido) 
+    +cambiarConfiguracionAnteInconveniente() 
 }
 
 class Recorrido{
     -cuidadores: List<Persona>
     -estadoRecorrido: EstadoRecorrido
-    -paradas: List<Recorrido>
-    -esperaMin: Integer;
+    -tiempoOrigenDestino: Integer
 
-    +confimarCuidadores();
-    +confirmarLlegada();
-    +origenInicial();
-    +destinoFinal();
-    +agregarParada(Recorrido);
-
-    /*Int calcularTiempoDemora(){
-        return paradas.getEsperaMin.stream().reduce(0, Integer::sum);
-    }*/
+    +confimarCuidadores() 
+    +confirmarLlegada() 
+    +origenInicial() 
+    +destinoFinal() 
 }
 
 class Ubicacion{
