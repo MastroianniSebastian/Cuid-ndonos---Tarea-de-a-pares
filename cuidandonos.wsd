@@ -1,0 +1,103 @@
+@startuml
+
+class Persona {
+    -nombre: String
+    -apellido: String
+    -direccion: String
+    -edad: Integer
+    -sexo: Boolean
+
+    +aceptarRecorrido()
+    +rechazarRecorrido()
+
+}
+
+interface EstrategiaInconveniente {
+    + accionarFrenteAInconveniente();
+}
+
+class EnviarMensajeCuidadores implements EstrategiaInconveniente {
+    +accionarAnteInconveniente();
+}
+
+class RealizarLLamadaPolicia implements EstrategiaInconveniente {
+    +accionarAnteInconveniente();
+}
+
+class RealizarLLamadaContacto implements EstrategiaInconveniente {
+    +accionarAnteInconveniente();
+}
+
+class EsperarXFalsaAlarma implements EstrategiaInconveniente {
+    +accionarAnteInconveniente();
+}
+
+
+interface EstadoRecorrido{
+    +notificarCuidadores(); 
+    +notificarTranseunte();
+    +actualizarEstado();
+    +finalizar();
+}
+
+class EnEspera implements EstadoRecorrido{
+    +iniciarRecorrido();
+    +calcularTiempoDemora()
+}
+
+class Iniciado implements EstadoRecorrido{
+    
+
+}
+
+class Finalizado implements EstadoRecorrido{
+
+}
+
+class Inconveniente implements EstadoRecorrido{
+    -estrategiaAnteInconveniente: EstrategiaInconveniente
+    +accionarAnteInconveniente(Recorrido recorrido);
+    +cambiarConfiguracionAnteInconveniente();
+}
+
+class Recorrido{
+    -cuidadores: List<Persona>
+    -estadoRecorrido: EstadoRecorrido
+    -paradas: List<Recorrido>
+    -esperaMin: Integer;
+
+    +confimarCuidadores();
+    +confirmarLlegada();
+    +origenInicial();
+    +destinoFinal();
+    +agregarParada(Recorrido);
+
+    /*Int calcularTiempoDemora(){
+        return paradas.getEsperaMin.stream().reduce(0, Integer::sum);
+    }*/
+}
+
+class Ubicacion{
+    -latitud: Double
+    -longitud: Double
+    
+}
+
+
+Recorrido --> EstadoRecorrido
+Recorrido --> Persona
+Recorrido -right-> Ubicacion
+
+Inconveniente -down-> EstrategiaInconveniente
+
+
+Iniciado ..> Finalizado
+Inconveniente .left.> Finalizado
+
+EnEspera ..> Iniciado
+Iniciado .right.> Inconveniente
+
+
+
+@enduml 
+
